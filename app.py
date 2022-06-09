@@ -4,6 +4,7 @@ from PIL import Image
 from google.cloud import storage
 from google.oauth2 import service_account
 import json
+import requests
 
 ###############################
 ######## Display menu #########
@@ -47,6 +48,13 @@ if uploaded_file is not None:
     blob = bucket.blob("img.jpg")
     blob.upload_from_filename("img.jpg")
     st.write('Photo is uploaded 🥳')
-    st.write('Your menu is coming soon... 🌮 🌯 🥙')
-    path = 'seed_db.json'
-    display_menu(path)
+
+    with st.spinner('Your menu is coming soon... 🌮 🌯 🥙'):
+        # TEST WITH SEED DATABASE
+        path = 'seed_db.json'
+        display_menu(path)
+
+        # # REAL API link
+        # url = '/dish'
+        # response = requests.get(url).json()
+

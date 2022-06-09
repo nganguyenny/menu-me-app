@@ -24,4 +24,5 @@ streamlit
 # google-cloud-translate==2.0.1
 python-dotenv
 # uvicorn
+requests
 oauth2client
