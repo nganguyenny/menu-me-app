@@ -27,11 +27,8 @@ def display_menu(path):
 ####   Streamlit home page    ####
 ##################################
 import os
-from dotenv import load_dotenv, find_dotenv
-env_path = find_dotenv()
-load_dotenv(env_path)
-CREDENTIALS_JSON_GOOGLE_CLOUD = os.getenv('CREDENTIALS_JSON_GOOGLE_CLOUD')
 
+CREDENTIALS_JSON_GOOGLE_CLOUD = os.environ['CREDENTIALS_JSON_GOOGLE_CLOUD']
 
 # img_file_buffer = st.camera_input("Take a picture!")
 
