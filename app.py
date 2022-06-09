@@ -47,7 +47,7 @@ if uploaded_file is not None:
     bucket = client.get_bucket('menu_me_bucket')
     blob = bucket.blob("img.jpg")
     blob.upload_from_filename("img.jpg")
-    st.success('Photo is uploaded 🥳')
+    st.write('Photo is uploaded 🥳')
 
     with st.spinner('Your menu is coming soon... 🌮 🌯 🥙'):
         # TEST WITH SEED DATABASE
@@ -59,5 +59,4 @@ if uploaded_file is not None:
         # url = '/dish'
         # response = requests.get(url).json()
 
-    st.success('Enjoy your meals! 🥰')
-
+    st.write('Enjoy your meals! 🥰')
