@@ -43,7 +43,7 @@ if uploaded_file is not None:
     rgb_im = img.convert("RGB")
     rgb_im.save("img.jpg")
     credentials = service_account.Credentials.from_service_account_info(json.loads(CREDENTIALS_JSON_GOOGLE_CLOUD))
-    client = storage.Client(credentials=credentials, project='menu-me-352703')
+    client = storage.Cliesnt(credentials=credentials, project='menu-me-352703')
     bucket = client.get_bucket('menu_me_bucket')
     blob = bucket.blob("img.jpg")
     blob.upload_from_filename("img.jpg")
@@ -53,8 +53,11 @@ if uploaded_file is not None:
         # TEST WITH SEED DATABASE
         path = 'seed_db.json'
         display_menu(path)
+        
 
         # # REAL API link
         # url = '/dish'
         # response = requests.get(url).json()
+
+    st.write('Enjoy your meals! 🥰')
 
