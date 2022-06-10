@@ -10,8 +10,8 @@ import requests
 ######## Display menu #########
 ###############################
 def display_menu(path):
-    df = pd.read_json(path)
-    df = pd.DataFrame(df)
+    # df = pd.read_json(path)
+    df = pd.DataFrame(path)
     with open('front-end/styles.css') as f:
         st.markdown(f'<style>{f.read()}</style>', unsafe_allow_html=True)
 
