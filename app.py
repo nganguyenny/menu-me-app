@@ -50,13 +50,14 @@ if uploaded_file is not None:
     st.write('Photo is uploaded 🥳')
 
     with st.spinner('Your menu is coming soon... 🌮 🌯 🥙'):
-        # TEST WITH SEED DATABASE
-        path = 'seed_db.json'
-        display_menu(path)
+        # # TEST WITH SEED DATABASE
+        # path = 'seed_db.json'
+        # display_menu(path)
         
 
         # # REAL API link
-        # url = '/dish'
-        # response = requests.get(url).json()
+        url = 'https://menu-me-api-rmype5shcq-ew.a.run.app/dish'
+        response = requests.get(url).json()
+        display_menu(response)
 
     st.write('Enjoy your meals! 🥰')
