@@ -5,6 +5,7 @@ from google.cloud import storage
 from google.oauth2 import service_account
 import json
 import requests
+import time
 
 ###############################
 ######## Display menu #########
@@ -24,18 +25,28 @@ def display_menu(path):
             </div>
             </div>''', unsafe_allow_html=True)
 
+
+##################### LOCAL TEST ###############
+# import os
+# from dotenv import load_dotenv, find_dotenv
+# #Connecting with GCP
+# env_path = find_dotenv()
+# load_dotenv(env_path)
+# CREDENTIALS_JSON_GOOGLE_CLOUD = os.getenv('CREDENTIALS_JSON_GOOGLE_CLOUD')
+################################################
+
 ##################################
-####   Streamlit home page    ####
+####     Google Cloud Run     ####
 ##################################
 import os
 
 CREDENTIALS_JSON_GOOGLE_CLOUD = os.environ['CREDENTIALS_JSON_GOOGLE_CLOUD']
 
-# img_file_buffer = st.camera_input("Take a picture!")
 
-# if img_file_buffer is not None:
 from streamlit import legacy_caching
 legacy_caching.clear_cache()
+
+# time.sleep(10)
 
 uploaded_file = st.file_uploader("Choose a file")
 if uploaded_file is not None:
@@ -47,6 +58,14 @@ if uploaded_file is not None:
     bucket = client.get_bucket('menu_me_bucket')
     blob = bucket.blob("img.jpg")
     blob.upload_from_filename("img.jpg")
+
+    my_bar = st.progress(0)
+
+    for i in range(100):
+    # with st.spinner('Your photo is being uploaded...'):
+        time.sleep(0.1)
+        my_bar.progress(i+1)
+        
     st.write('Photo is uploaded 🥳')
 
     with st.spinner('Your menu is coming soon... 🌮 🌯 🥙'):
@@ -54,10 +73,16 @@ if uploaded_file is not None:
         # path = 'seed_db.json'
         # display_menu(path)
         
-
+        time.sleep(0.)
         # # REAL API link
         url = 'https://menu-me-api-rmype5shcq-ew.a.run.app/dish'
         response = requests.get(url).json()
         display_menu(response)
 
     st.write('Enjoy your meals! 🥰')
+
+    credentials = service_account.Credentials.from_service_account_info(json.loads(CREDENTIALS_JSON_GOOGLE_CLOUD))
+    client = storage.Client(credentials=credentials, project='menu-me-352703')
+    bucket = client.get_bucket('menu_me_bucket')
+    blob = bucket.blob("img.jpg")
+    blob.delete()
