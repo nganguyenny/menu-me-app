@@ -69,11 +69,16 @@ if uploaded_file is not None:
     blob = bucket.blob(f"menu-{date_time}.jpg")
     blob.upload_from_filename(f"menu-{date_time}.jpg")
 
+    # Show progress bar for uploading image
+    my_bar = st.progress(0)
+    for i in range(100):
+        time.sleep(0.1)
+        my_bar.progress(i+1)
+    st.write('Photo is uploaded 🥳')
+
     # Start calling API to get dish name
     base_url = f'https://menu-me-api-rmype5shcq-as.a.run.app'
     all_dishnames = requests.get(f"{base_url}/dish?path=https://storage.googleapis.com/menu_me_bucket/menu-{date_time}.jpg").json()
-
-    st.write('Photo is uploaded 🥳')
 
     st.image(rgb_im)
 
