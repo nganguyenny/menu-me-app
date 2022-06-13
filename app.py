@@ -87,7 +87,7 @@ if uploaded_file is not None:
     print(menu_img_url)
     all_dishnames = requests.get(menu_img_url).json()
 
-    st.image(menu_img_url)
+    st.image(rgb_im)
 
     # Display full menu
     with st.spinner('Your menu is coming soon... 🌮 🌯 🥙'):        
