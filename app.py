@@ -21,14 +21,14 @@ def display_menu_item(dish_name):
         </div>''', unsafe_allow_html=True)
 
 
-#################### LOCAL TEST ###############
+################### LOCAL TEST ###############
 # import os
 # from dotenv import load_dotenv, find_dotenv
 # #Connecting with GCP
 # env_path = find_dotenv()
 # load_dotenv(env_path)
 # CREDENTIALS_JSON_GOOGLE_CLOUD = os.getenv('CREDENTIALS_JSON_GOOGLE_CLOUD')
-###############################################
+##############################################
 
 ##################################
 ####     Google Cloud Run     ####
@@ -78,17 +78,20 @@ if uploaded_file is not None:
 
     # Start calling API to get dish name
     base_url = f'https://menu-me-api-rmype5shcq-as.a.run.app'
-    all_dishnames = requests.get(f"{base_url}/dish?path=https://storage.googleapis.com/menu_me_bucket/menu-{date_time}.jpg").json()
+    menu_img_url = f"{base_url}/dish?path=https://storage.googleapis.com/menu_me_bucket/menu-{date_time}.jpg"
+    print(menu_img_url)
+    all_dishnames = requests.get(menu_img_url).json()
 
-    st.image(rgb_im)
+    st.image(menu_img_url)
 
     # Display full menu
     with st.spinner('Your menu is coming soon... 🌮 🌯 🥙'):        
         for dish in all_dishnames:
             item_details = requests.get(f"{base_url}/item?item={dish}&language={target_language}").json()
-            display_menu_item(item_details)
+            if item_details['img_url'] != None:
+                display_menu_item(item_details)
 
     st.write('Enjoy your meals! 🥰')
 
-    blob.delete()
+    # blob.delete()
     # os.remove(rgb_im)
