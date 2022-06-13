@@ -80,7 +80,7 @@ if uploaded_file is not None:
     base_url = f'https://menu-me-api-rmype5shcq-as.a.run.app'
     all_dishnames = requests.get(f"{base_url}/dish?path=https://storage.googleapis.com/menu_me_bucket/menu-{date_time}.jpg").json()
 
-    st.image(rgb_im)
+    st.image(rgb_im, use_column_width='always')
 
     # Display full menu
     with st.spinner('Your menu is coming soon... 🌮 🌯 🥙'):        
