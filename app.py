@@ -13,11 +13,13 @@ from datetime import datetime
 ###############################
 def display_menu_item(dish_name):
     st.markdown(f'''<div class="card-product">
+    <a href={dish_name['img_url']} target="_blank">
         <img src="{dish_name['img_url']}"/>
         <div class="card-product-infos">
             <h2>{dish_name['dish_name']}</h2>
             <p>{dish_name['translated_name']}</p>
         </div>
+    </a>
         </div>''', unsafe_allow_html=True)
 
 
