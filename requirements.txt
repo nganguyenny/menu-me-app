@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 pip>=9
 setuptools>=26
 twine
@@ -25,4 +26,33 @@ fastapi
 google-cloud-translate==2.0.1
 python-dotenv
 uvicorn
+=======
+# pip>=9
+# setuptools>=26
+# twine
+# wheel>=0.29
+# numpy
+pandas
+# scikit-learn
+# coverage
+# flake8
+pytest
+# yapf
+google-cloud-storage
+# s3fs
+# six
+# joblib
+# google-api-python-client
+google-cloud
+# google-cloud-vision
+# google-images-search
+# google-cloud-translate
+# google-cloud-storage
+streamlit
+# fastapi
+# google-cloud-translate==2.0.1
+python-dotenv
+# uvicorn
+requests
+>>>>>>> d1450ba50b29deae198fad60f9429a31135a407c
 oauth2client

@@ -47,11 +47,19 @@ count_lines:
 # ----------------------------------
 
 streamlit:
+<<<<<<< HEAD
 	-@streamlit run menu_me/display-menu.py
 
 heroku_login:
 	-@heroku login
 APP_NAME= app-menu-me
+=======
+	-@streamlit run app.py
+
+heroku_login:
+	-@heroku login
+APP_NAME= menu-me
+>>>>>>> d1450ba50b29deae198fad60f9429a31135a407c
 
 heroku_create_app:
 	-@heroku create ${APP_NAME}

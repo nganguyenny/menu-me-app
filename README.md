@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Data analysis
 - Document here the project: menu_me
 - Description: Project Description
@@ -72,3 +73,6 @@ mkdir tmp
 cd tmp
 menu_me-run
 ```
+=======
+# Front-end for Menu.me
+>>>>>>> d1450ba50b29deae198fad60f9429a31135a407c
