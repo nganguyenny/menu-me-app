@@ -73,11 +73,6 @@ if uploaded_file is not None:
     base_url = f'https://menu-me-api-rmype5shcq-as.a.run.app'
     all_dishnames = requests.get(f"{base_url}/dish?path=https://storage.googleapis.com/menu_me_bucket/menu-{date_time}.jpg").json()
 
-    # Show progress bar for uploading image
-    # my_bar = st.progress(0)
-    # for i in range(100):
-    #     time.sleep(0.1)
-    #     my_bar.progress(i+1)
     st.write('Photo is uploaded 🥳')
 
     st.image(rgb_im)
@@ -91,4 +86,4 @@ if uploaded_file is not None:
     st.write('Enjoy your meals! 🥰')
 
     blob.delete()
-    os.remove(rgb_im)
+    # os.remove(rgb_im)
