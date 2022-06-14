@@ -89,7 +89,7 @@ if uploaded_file is not None:
 
     st.write(all_dishnames)
 
-    st.image(rgb_im)
+    # st.image(rgb_im)
 
     # Display full menu
     with st.spinner('Your menu is coming soon... 🌮 🌯 🥙'):        
