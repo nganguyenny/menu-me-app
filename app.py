@@ -87,6 +87,8 @@ if uploaded_file is not None:
     print(menu_img_url)
     all_dishnames = requests.get(menu_img_url).json()
 
+    st.write(all_dishnames)
+
     st.image(rgb_im)
 
     # Display full menu
