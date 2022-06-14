@@ -37,24 +37,25 @@ height: 812px;
 }
 
 .card-product h2 {
-  font-size: 13px;
+  font-size: 15px;
   font-weight: bold;
   /* margin-left: 0; */
-  margin: 0;
+  margin: 0px 0px 3px 0px;
   font-family: "Roboto", "Helvetica Neue";
+  padding: 0px;
   /* text-overflow: ellipsis;
   white-space: nowrap; */
 }
 
 .card-product p {
-  font-size: 13px;
+  font-size: 14px;
   /* line-height: 1.4; */
   /* margin-top: 5%; */
   /* opacity: .7; */
   /* margin-bottom: 0; */
   /* margin-top: 8px; */
   /* margin-top: 4px; */
-  margin: 0;
+  margin: 0px;
   font-family: "Raleway", "Helvetica Neue";
   color: #62616a;
   /* text-overflow: ellipsis;

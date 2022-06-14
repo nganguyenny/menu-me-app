@@ -47,7 +47,7 @@ count_lines:
 # ----------------------------------
 
 streamlit:
-	-@streamlit run app.py
+	-@streamlit run main-page.py
 
 heroku_login:
 	-@heroku login
