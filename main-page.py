@@ -158,14 +158,14 @@ if uploaded_file is not None:
                 print('response.status_code:', response.status_code)
                 finish = True
             else:
-                if run_times < 10:
+                if run_times < 5:
                     time.sleep(1)
                     print('> sleep for 0.5s, and try fetch API/dish again')
                     run_times += 1
                     print('response.status_code:', response.status_code)
                 else:
                     finish = True
-                    print('Tried 10 times, cant fetch API/dish')
+                    print('Tried 5 times, cant fetch API/dish')
 
     # st.write(all_dishnames)
 
