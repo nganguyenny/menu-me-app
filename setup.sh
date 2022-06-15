@@ -14,6 +14,4 @@ enableWebsocketCompression = false\n\
 port = $PORT\n\
 [theme]\n\
 base = 'light'\n\
-[browser]\n\
-serverAddress = 'https://menu-me-app.herokuapp.com/'\n\
 " > ~/.streamlit/config.toml
