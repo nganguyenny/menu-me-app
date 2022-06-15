@@ -144,26 +144,27 @@ if uploaded_file is not None:
     menu_img_url = f"{base_url}/dish?path=https://storage.googleapis.com/menu_me_bucket/menu-{date_time}.jpg"
     print(f'> menu_img_url on cloud storage: https://storage.googleapis.com/menu_me_bucket/menu-{date_time}.jpg')
     with st.spinner('Our kitchen is cooking secret recipe... 👩‍🍳'):
-        json_succeeded = False
+        finish = False
         run_times = 0
-        while json_succeeded != True:
+        while finish != True:
             response = requests.get(menu_img_url)
             if response.status_code == 200:
                 all_dishnames = response.json()
                 print('> successfully fetched API/dish')
                 print('all_dishnames: ', all_dishnames)
-                json_succeeded = True
+                finish = True
             elif response.status_code == 503:
                 st.write('Our kitchen is too busy, please come back in a few minutes! 🙏')
-                print('response.status_code == 503')
+                print('response.status_code:', response.status_code)
+                finish = True
             else:
                 if run_times < 10:
                     time.sleep(1)
                     print('> sleep for 0.5s, and try fetch API/dish again')
                     run_times += 1
-                    print(response.status_code)
+                    print('response.status_code:', response.status_code)
                 else:
-                    json_succeeded = True
+                    finish = True
                     print('Tried 10 times, cant fetch API/dish')
 
     # st.write(all_dishnames)
