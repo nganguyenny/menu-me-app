@@ -153,14 +153,18 @@ if uploaded_file is not None:
                 print('> successfully fetched API/dish')
                 print('all_dishnames: ', all_dishnames)
                 json_succeeded = True
+            elif response.status_code == 503:
+                st.write('Our kitchen is too busy, please come back in a few minutes! 🙏')
+                print('response.status_code == 503')
             else:
-                if run_times < 30:
-                    time.sleep(0.5)
+                if run_times < 10:
+                    time.sleep(1)
                     print('> sleep for 0.5s, and try fetch API/dish again')
                     run_times += 1
+                    print(response.status_code)
                 else:
                     json_succeeded = True
-                    print('Tried 30 times, cant fetch API/dish')
+                    print('Tried 10 times, cant fetch API/dish')
 
     # st.write(all_dishnames)
 
