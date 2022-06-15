@@ -73,20 +73,20 @@ def save_item_details_html(dish_name, img_url, translated_name, allergy_informat
 
 
 ################### LOCAL TEST ###############
-import os
-from dotenv import load_dotenv, find_dotenv
-#Connecting with GCP
-env_path = find_dotenv()
-load_dotenv(env_path)
-CREDENTIALS_JSON_GOOGLE_CLOUD = os.getenv('CREDENTIALS_JSON_GOOGLE_CLOUD')
+# import os
+# from dotenv import load_dotenv, find_dotenv
+# #Connecting with GCP
+# env_path = find_dotenv()
+# load_dotenv(env_path)
+# CREDENTIALS_JSON_GOOGLE_CLOUD = os.getenv('CREDENTIALS_JSON_GOOGLE_CLOUD')
 ##############################################
 
 ##################################
 ####     Google Cloud Run     ####
 ##################################
-# import os
+import os
 
-# CREDENTIALS_JSON_GOOGLE_CLOUD = os.environ['CREDENTIALS_JSON_GOOGLE_CLOUD']
+CREDENTIALS_JSON_GOOGLE_CLOUD = os.environ['CREDENTIALS_JSON_GOOGLE_CLOUD']
 
 st.set_page_config(page_title="Menu.me", page_icon="🍕")
 
@@ -95,7 +95,7 @@ legacy_caching.clear_cache()
 
 
 with open('front-end/styles.css') as f:
-        st.markdown(f'<style>{f.read()}</style>', unsafe_allow_html=True)
+    st.markdown(f'<style>{f.read()}</style>', unsafe_allow_html=True)
 
 st.title('Menu.me')
 
@@ -123,11 +123,11 @@ if uploaded_file is not None:
 
     # Upload photo to Google Storage
     with st.spinner('Menu photo is being transformed... ✨✨'):
-      time.sleep(2)
-      blob = bucket.blob(f"menu-{date_time}.jpg")
-      blob.upload_from_filename(f"menu-{date_time}.jpg")
-      print('> blob just finished uploading to Google Storage')
-      time.sleep(3)
+        time.sleep(2)
+        blob = bucket.blob(f"menu-{date_time}.jpg")
+        blob.upload_from_filename(f"menu-{date_time}.jpg")
+        print('> blob just finished uploading to Google Storage')
+        time.sleep(3)
 
     # Show progress bar for uploading image
     my_bar = st.sidebar.progress(0)
@@ -144,23 +144,23 @@ if uploaded_file is not None:
     menu_img_url = f"{base_url}/dish?path=https://storage.googleapis.com/menu_me_bucket/menu-{date_time}.jpg"
     print(f'> menu_img_url on cloud storage: https://storage.googleapis.com/menu_me_bucket/menu-{date_time}.jpg')
     with st.spinner('Our kitchen is cooking secret recipe... 👩‍🍳'):
-      json_succeeded = False
-      run_times = 0
-      while json_succeeded != True:
-        response = requests.get(menu_img_url)
-        if response.status_code == 200:
-          all_dishnames = response.json()
-          print('> successfully fetched API/dish')
-          print('all_dishnames: ', all_dishnames)
-          json_succeeded = True
-        else:
-          if run_times < 30:
-            time.sleep(0.5)
-            print('> sleep for 0.5s, and try fetch API/dish again')
-            run_times += 1
-          else:
-            json_succeeded = True
-            print('Tried 30 times, cant fetch API/dish')
+        json_succeeded = False
+        run_times = 0
+        while json_succeeded != True:
+            response = requests.get(menu_img_url)
+            if response.status_code == 200:
+                all_dishnames = response.json()
+                print('> successfully fetched API/dish')
+                print('all_dishnames: ', all_dishnames)
+                json_succeeded = True
+            else:
+                if run_times < 30:
+                    time.sleep(0.5)
+                    print('> sleep for 0.5s, and try fetch API/dish again')
+                    run_times += 1
+                else:
+                    json_succeeded = True
+                    print('Tried 30 times, cant fetch API/dish')
 
     # st.write(all_dishnames)
 
@@ -168,37 +168,37 @@ if uploaded_file is not None:
     with st.spinner('Your menu is coming soon... 🌮 🌯 🥙'):
         count = 0
         for key, value in all_dishnames.items():
-          print('key: ', key)
-          print('value: ', value)
-          item_details = requests.get(f"{base_url}/item?item={key}&language={target_language}").json()
-          print('> item details api response: ', item_details)
-          if item_details['img_url'] != None:
-              dish_name = item_details['dish_name'].title()
-              img_url = item_details['img_url']
-              translated_name = item_details['translated_name'].title()
-              allergy_information = item_details['allergy_information']
-              recipe = item_details['recipe']
-              ingredients = item_details['ingredients']
-              menu_loc_url = value
+            print('key: ', key)
+            print('value: ', value)
+            item_details = requests.get(f"{base_url}/item?item={key}&language={target_language}").json()
+            print('> item details api response: ', item_details)
+            if item_details['img_url'] != None:
+                dish_name = item_details['dish_name'].title()
+                img_url = item_details['img_url']
+                translated_name = item_details['translated_name'].title()
+                allergy_information = item_details['allergy_information']
+                recipe = item_details['recipe']
+                ingredients = item_details['ingredients']
+                menu_loc_url = value
 
-              # save and store html render to cloud storage:
-              item_html = save_item_details_html(dish_name, img_url, translated_name, allergy_information, ingredients, recipe,  menu_loc_url)
-              print('> item_html: successfully save_item_details_html')
-              item_html_url = f'{count}_{date_time}_{dish_name.replace(" ", "-")}.html'
-              print('> item_html_url: ', item_html_url)
+                # save and store html render to cloud storage:
+                item_html = save_item_details_html(dish_name, img_url, translated_name, allergy_information, ingredients, recipe,  menu_loc_url)
+                print('> item_html: successfully save_item_details_html')
+                item_html_url = f'{count}_{date_time}_{dish_name.replace(" ", "-")}.html'
+                print('> item_html_url: ', item_html_url)
 
-              with open(item_html_url, 'w') as file:
-                  file.write(item_html)
+                with open(item_html_url, 'w') as file:
+                    file.write(item_html)
 
-              item_html_blob = bucket.blob(item_html_url)
-              item_html_blob.upload_from_filename(item_html_url)
+                item_html_blob = bucket.blob(item_html_url)
+                item_html_blob.upload_from_filename(item_html_url)
 
-              # full path to html link in cloud storage:
-              html_link = f"https://storage.googleapis.com/menu_me_bucket/{item_html_url}"
-              print('> full html render link for each item: ', html_link)
+                # full path to html link in cloud storage:
+                html_link = f"https://storage.googleapis.com/menu_me_bucket/{item_html_url}"
+                print('> full html render link for each item: ', html_link)
 
-              display_menu_item(dish_name, img_url, translated_name, html_link)
-              count+=1
+                display_menu_item(dish_name, img_url, translated_name, html_link)
+                count+=1
 
     st.write('Enjoy your meals! 🥰')
 
