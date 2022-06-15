@@ -56,20 +56,20 @@ def save_item_details_html(dish_name, img_url, translated_name):
 
 
 ################### LOCAL TEST ###############
-# import os
-# from dotenv import load_dotenv, find_dotenv
-# #Connecting with GCP
-# env_path = find_dotenv()
-# load_dotenv(env_path)
-# CREDENTIALS_JSON_GOOGLE_CLOUD = os.getenv('CREDENTIALS_JSON_GOOGLE_CLOUD')
+import os
+from dotenv import load_dotenv, find_dotenv
+#Connecting with GCP
+env_path = find_dotenv()
+load_dotenv(env_path)
+CREDENTIALS_JSON_GOOGLE_CLOUD = os.getenv('CREDENTIALS_JSON_GOOGLE_CLOUD')
 ##############################################
 
 ##################################
 ####     Google Cloud Run     ####
 ##################################
-import os
+# import os
 
-CREDENTIALS_JSON_GOOGLE_CLOUD = os.environ['CREDENTIALS_JSON_GOOGLE_CLOUD']
+# CREDENTIALS_JSON_GOOGLE_CLOUD = os.environ['CREDENTIALS_JSON_GOOGLE_CLOUD']
 
 st.set_page_config(page_title="Menu.me", page_icon="🍕")
 

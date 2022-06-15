@@ -59,19 +59,19 @@ p {
 }
 
 .card-trip > img {
-  height: 200px;
+  height: 900px;
   width: 100%;
   object-fit: cover;
 }
 
 .card-trip h2 {
-  font-size: 20px;
+  font-size: 70px;
   font-weight: bold;
   margin: 0;
 }
 
 .card-trip h3 {
-  font-size: 16px;
+  font-size: 50px;
   margin: 2px 0;
   font-weight: normal;
   font-family: "Roboto", "Helvetica Neue";
@@ -79,17 +79,17 @@ p {
 }
 
 .card-trip h4 {
-  font-size: 15px;
-  margin: 18px 0 5px;
+  font-size: 40px;
+  margin: 25px 0 5px;
   font-weight: bold;
   color: black;
   font-family: "Roboto", "Helvetica Neue";
 }
 
 .card-trip p, ul li, ol li{
-  font-size: 14px;
+  font-size: 36px;
   font-weight: normal;
-  padding-bottom: 2px;
+  padding-bottom: 5px;
   margin: 0px;
   font-family: "Raleway", "Helvetica Neue";
   color: black;
@@ -97,7 +97,7 @@ p {
 
 .card-trip ul, ol {
   margin: 5px 0;
-  padding: 0 0 0 20px;
+  padding: 0 0 0 50px;
 }
 
 .card-trip .card-trip-infos {
