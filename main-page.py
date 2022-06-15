@@ -28,8 +28,7 @@ def display_menu_item(dish_name, img_url, translated_name, html_link):
 def save_item_details_html(dish_name, img_url, translated_name):
     result = f'''<html>
         <head>
-            <!-- <link rel="stylesheet" href="https://storage.googleapis.com/menu_me_bucket/styles.css"> -->
-            <link rel="stylesheet" href="styles-test.css">
+            <link rel="stylesheet" href="https://storage.googleapis.com/menu_me_bucket/styles.css">
         </head>
         <body>
             <div class="card-trip">
