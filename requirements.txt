@@ -19,7 +19,7 @@ google-cloud
 # google-images-search
 # google-cloud-translate
 # google-cloud-storage
-streamlit
+streamlit==1.6.0
 # fastapi
 # google-cloud-translate==2.0.1
 python-dotenv
