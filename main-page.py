@@ -7,22 +7,53 @@ import json
 import requests
 import time
 from datetime import datetime
+import os
 
 ###############################
 ######## Display menu #########
 ###############################
-def display_menu_item(dish_name):
+def display_menu_item(dish_name, img_url, translated_name, html_link):
     st.markdown(f'''<div class="card-product">
-    <a href='pages/{count}_{dish.title()}.html' target="_blank">
-        <img src="{dish_name['img_url']}"/>
-    </a>
-    <a href='pages/{count}_{dish.title()}.html' style="text-decoration: none;">
-        <div class="card-product-infos">
-            <h2>{dish_name['dish_name'].title()}</h2>
-            <p>{dish_name['translated_name'].title()}</p>
-        </div>
-    </a>
+            <a href="{html_link}" target="_blank">
+                <img src="{img_url}"/>
+            </a>
+            <a href='{html_link}' style="text-decoration: none;">
+                <div class="card-product-infos">
+                    <h2>{dish_name}</h2>
+                    <p>{translated_name}</p>
+                </div>
+            </a>
         </div>''', unsafe_allow_html=True)
+
+def save_item_details_html(dish_name, img_url, translated_name):
+    result = f'''<html>
+        <head>
+            <!-- <link rel="stylesheet" href="https://storage.googleapis.com/menu_me_bucket/styles.css"> -->
+            <link rel="stylesheet" href="styles-test.css">
+        </head>
+        <body>
+            <div class="card-trip">
+                <img src="{img_url}" />
+                <div class="card-trip-infos">
+                    <div>
+                    <h2>{dish_name}</h2>
+                    <h3>{translated_name}</h3>
+                    <h4>Allergy Information</h4>
+                    <p>Ok</p>
+                    <h4>Ingredients</h4>
+                    <ul>
+                        <li>Sample Ingredients</li>
+                    </ul>
+                    <h4>Recipe</h4>
+                    <ol>
+                        <li>Sample step</li>
+                    </ul>
+                    </div>
+                </div>
+                </div>
+        </body>
+        </html>'''
+    return result
 
 
 ################### LOCAL TEST ###############
@@ -97,18 +128,30 @@ if uploaded_file is not None:
     # Display full menu
     with st.spinner('Your menu is coming soon... 🌮 🌯 🥙'):
         count = 0
+        cwd = os.getcwd()
         for dish in all_dishnames:
             item_details = requests.get(f"{base_url}/item?item={dish}&language={target_language}").json()
             if item_details['img_url'] != None:
-                display_menu_item(item_details)
-                with open(f'pages/{count}_{dish.title()}.html', 'w') as file:
-                    file.write(f'''<div class="card-product">
-                            <img src="{item_details['img_url']}"/>
-                            <div class="card-product-infos">
-                                <h2>{item_details['dish_name'].title()}</h2>
-                                <p>{item_details['translated_name'].title()}</p>
-                            </div>
-                            </div>''')
+                dish_name = item_details['dish_name'].title()
+                img_url = item_details['img_url']
+                translated_name = item_details['translated_name'].title()
+
+                # save and store html render to cloud storage:
+                item_html = save_item_details_html(dish_name, img_url, translated_name)
+                item_html_url = f'{count}_{date_time}_{dish_name.replace(" ", "-")}.html'
+
+                with open(item_html_url, 'w') as file:
+                    file.write(item_html)
+
+
+                item_html_blob = bucket.blob(item_html_url)
+                item_html_blob.upload_from_filename(item_html_url)
+
+                # full path to html link in cloud storage:
+                html_link = f"https://storage.googleapis.com/menu_me_bucket/{item_html_url}"
+                print(html_link)
+
+                display_menu_item(dish_name, img_url, translated_name, html_link)
             count+=1
 
     st.write('Enjoy your meals! 🥰')

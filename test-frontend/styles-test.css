@@ -7,14 +7,10 @@ height: 812px;
   overflow: hidden;
   height: 90px;
   background: white;
-  /* box-shadow: 0 0 15px rgba(178, 178, 178, 0.394); */
   display: flex;
   align-items: center;
   border-radius: 20px;
-  /* margin: 30px 50px; */
   padding: 10px;
-  /* margin-left: 5%;
-  margin-right: 5%; */
   margin: 10px 2px;
 }
 
@@ -30,38 +26,97 @@ height: 812px;
   object-fit: cover;
   filter: drop-shadow(0px 2px 3px rgba(175, 175, 175, 0.9));
   border-radius: 25px;
-  /* margin: 10%; */
   margin-right: 5px;
   margin-top: 3px;
   margin-bottom: 3px;
 }
 
-.card-product h2 {
+h2 {
   font-size: 15px;
   font-weight: bold;
-  /* margin-left: 0; */
   margin: 0px 0px 3px 0px;
   font-family: "Roboto", "Helvetica Neue";
   padding: 0px;
-  /* text-overflow: ellipsis;
-  white-space: nowrap; */
 }
 
-.card-product p {
+p {
   font-size: 14px;
-  /* line-height: 1.4; */
-  /* margin-top: 5%; */
-  /* opacity: .7; */
-  /* margin-bottom: 0; */
-  /* margin-top: 8px; */
-  /* margin-top: 4px; */
+  font-weight: bold;
   margin: 0px;
   font-family: "Raleway", "Helvetica Neue";
   color: #62616a;
-  /* text-overflow: ellipsis;
-  white-space: nowrap; */
 }
 
 .card-product .card-product-infos {
   padding-left: 16px;
 }
+
+
+/* INDIVIDUAL ITEM */
+.card-trip {
+  overflow: hidden;
+  background: white;
+}
+
+.card-trip > img {
+  height: 200px;
+  width: 100%;
+  object-fit: cover;
+}
+
+.card-trip h2 {
+  font-size: 20px;
+  font-weight: bold;
+  margin: 0;
+}
+
+.card-trip h3 {
+  font-size: 16px;
+  margin: 2px 0;
+  font-weight: normal;
+  font-family: "Roboto", "Helvetica Neue";
+  color: #4d4d4d;
+}
+
+.card-trip h4 {
+  font-size: 15px;
+  margin: 18px 0 5px;
+  font-weight: bold;
+  color: black;
+  font-family: "Roboto", "Helvetica Neue";
+}
+
+.card-trip p, ul li, ol li{
+  font-size: 14px;
+  font-weight: normal;
+  padding-bottom: 2px;
+  margin: 0px;
+  font-family: "Raleway", "Helvetica Neue";
+  color: black;
+}
+
+.card-trip ul, ol {
+  margin: 5px 0;
+  padding: 0 0 0 20px;
+}
+
+.card-trip .card-trip-infos {
+  padding: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  position: relative;
+}
+
+/* .card-trip-infos .card-trip-user {
+  position: absolute;
+  right: 16px;
+  top: -20px;
+  width: 40px;
+} */
+
+body {
+  padding: 0;
+  margin: 0;
+}
+
