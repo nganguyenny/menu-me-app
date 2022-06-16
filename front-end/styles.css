@@ -141,7 +141,7 @@ div.appview-container {
   background-repeat: no-repeat;
   background-position: right top;
   background-attachment: fixed;
-  background-size: 70% auto;
+  background-size: 300px auto;
   /* background-size: 80px 80px; */
   /* padding: 16px 16px; */
 }
