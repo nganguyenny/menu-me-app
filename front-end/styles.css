@@ -135,6 +135,10 @@ body {
   min-height: 100%;
 }
 
+div.block-container {
+  padding: 16px 16px;
+}
+
 div.appview-container {
   background-image:url(https://storage.cloud.google.com/menu_me_storage/pizza-photo-header.png);
   /* background-size:cover; */
@@ -143,5 +147,4 @@ div.appview-container {
   background-attachment: fixed;
   background-size: 300px auto;
   /* background-size: 80px 80px; */
-  padding: 16px 16px;
 }
