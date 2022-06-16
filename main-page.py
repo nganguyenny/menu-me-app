@@ -85,26 +85,25 @@ def save_item_details_html(dish_name, img_url, translated_name, allergy_informat
 
 
 ################### LOCAL TEST ###############
-import os
-from dotenv import load_dotenv, find_dotenv
-#Connecting with GCP
-env_path = find_dotenv()
-load_dotenv(env_path)
-CREDENTIALS_JSON_GOOGLE_CLOUD = os.getenv('CREDENTIALS_JSON_GOOGLE_CLOUD')
+# import os
+# from dotenv import load_dotenv, find_dotenv
+
+# env_path = find_dotenv()
+# load_dotenv(env_path)
+# CREDENTIALS_JSON_GOOGLE_CLOUD = os.getenv('CREDENTIALS_JSON_GOOGLE_CLOUD')
 ##############################################
 
 ##################################
 ####     Google Cloud Run     ####
 ##################################
-# import os
+import os
 
-# CREDENTIALS_JSON_GOOGLE_CLOUD = os.environ['CREDENTIALS_JSON_GOOGLE_CLOUD']
+CREDENTIALS_JSON_GOOGLE_CLOUD = os.environ['CREDENTIALS_JSON_GOOGLE_CLOUD']
 
 st.set_page_config(page_title="Menu.me", page_icon="🍕")
 
 from streamlit import legacy_caching
 legacy_caching.clear_cache()
-
 
 with open('front-end/styles.css') as f:
     st.markdown(f'<style>{f.read()}</style>', unsafe_allow_html=True)
@@ -188,7 +187,9 @@ if uploaded_file is not None:
         for key, value in all_dishnames.items():
             print('key: ', key)
             print('value: ', value)
-            item_details = requests.get(f"{base_url}/item?item={key}&language={target_language}").json()
+            item_request_url = f"{base_url}/item?item={key}&language={target_language}"
+            print(item_request_url)
+            item_details = requests.get(item_request_url).json()
             print('> item details api response: ', item_details)
             if item_details['img_url'] != None:
                 dish_name = item_details['dish_name'].title()

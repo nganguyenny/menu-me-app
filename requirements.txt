@@ -1,28 +1,8 @@
-# pip>=9
-# setuptools>=26
-# twine
-# wheel>=0.29
-# numpy
 pandas
-# scikit-learn
-# coverage
-# flake8
 pytest
-# yapf
 google-cloud-storage
-# s3fs
-# six
-# joblib
-# google-api-python-client
 google-cloud
-# google-cloud-vision
-# google-images-search
-# google-cloud-translate
-# google-cloud-storage
-streamlit==1.9.0
-# fastapi
-# google-cloud-translate==2.0.1
+streamlit
 python-dotenv
-# uvicorn
 requests
 oauth2client
