@@ -27,6 +27,13 @@ def display_menu_item(dish_name, img_url, translated_name, html_link):
 
 
 def save_item_details_html(dish_name, img_url, translated_name, allergy_information, ingredients, recipe,  menu_loc_url):
+    # Allergy
+    if allergy_information == 'No information found for this dish':
+        allergy_html = ""
+    else:
+        allergy_html = f'''<h4>Allergy Information</h4>
+                    <p>{allergy_information}</p>'''                
+    # Ingredients
     if ingredients == 'No ingredients found':
         ingredients_html = ''
     else:
@@ -34,7 +41,8 @@ def save_item_details_html(dish_name, img_url, translated_name, allergy_informat
         for ingredient in ingredients:
             ingredients_str += f"'<li>'{ingredient}'</li>'"
         ingredients_html = f'''<h4>Ingredients</h4>
-                        <ul>{ingredients_str}</ul>'''    
+                        <ul>{ingredients_str}</ul>'''
+    # Recipe
     if recipe == 'No recipe found':
         recipe_html = ''
     else:
@@ -58,8 +66,7 @@ def save_item_details_html(dish_name, img_url, translated_name, allergy_informat
                     <div>
                     <h2>{dish_name}</h2>
                     <h3>{translated_name}</h3>
-                    <h4>Allergy Information</h4>
-                    <p>{allergy_information}</p>
+                    {allergy_html}
                     {ingredients_html}
                     {recipe_html}
                     <h4>Location of dish on the menu ⭐️ 👇</h4>
@@ -73,12 +80,12 @@ def save_item_details_html(dish_name, img_url, translated_name, allergy_informat
 
 
 ################### LOCAL TEST ###############
-# import os
-# from dotenv import load_dotenv, find_dotenv
-# #Connecting with GCP
-# env_path = find_dotenv()
-# load_dotenv(env_path)
-# CREDENTIALS_JSON_GOOGLE_CLOUD = os.getenv('CREDENTIALS_JSON_GOOGLE_CLOUD')
+import os
+from dotenv import load_dotenv, find_dotenv
+#Connecting with GCP
+env_path = find_dotenv()
+load_dotenv(env_path)
+CREDENTIALS_JSON_GOOGLE_CLOUD = os.getenv('CREDENTIALS_JSON_GOOGLE_CLOUD')
 ##############################################
 
 ##################################
@@ -135,7 +142,8 @@ if uploaded_file is not None:
         time.sleep(0.1)
         my_bar.progress(i+1)
     st.sidebar.write('Menu photo is successfully uploaded! 🥳')
-    st.sidebar.write("Let's go back to home page 👉")
+    st.sidebar.write("Let's go to home page 👉")
+    st.sidebar.write(" ")
     st.sidebar.image(rgb_im)
 
 
@@ -143,7 +151,7 @@ if uploaded_file is not None:
     base_url = f'https://menu-me-api-rmype5shcq-as.a.run.app'
     menu_img_url = f"{base_url}/dish?path=https://storage.googleapis.com/menu_me_bucket/menu-{date_time}.jpg"
     print(f'> menu_img_url on cloud storage: https://storage.googleapis.com/menu_me_bucket/menu-{date_time}.jpg')
-    with st.spinner('Our kitchen is cooking secret recipe... 👩‍🍳'):
+    with st.spinner('Our kitchen is cooking the secret recipe... 👩‍🍳'):
         finish = False
         run_times = 0
         while finish != True:
