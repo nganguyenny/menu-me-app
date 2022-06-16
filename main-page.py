@@ -108,9 +108,10 @@ legacy_caching.clear_cache()
 with open('front-end/styles.css') as f:
     st.markdown(f'<style>{f.read()}</style>', unsafe_allow_html=True)
 
-st.markdown('''<span style="font-size:48px;color:black;font-weight:bold;padding:0;margin:0;">Menu</span>
-<span style="color:#FE714C;font-weight:bold;font-size:48px;padding:0;margin:0;">.me</span>
-''', unsafe_allow_html=True)
+# st.markdown('''<span style="font-size:48px;color:black;font-weight:bold;padding:0;margin:0;">Menu</span>
+# <span style="color:#FE714C;font-weight:bold;font-size:48px;padding:0;margin:0;">.me</span>
+# ''', unsafe_allow_html=True)
+st.title('Menu.me')
 
 target_language = 'en'
 # Setup the Google Storage
