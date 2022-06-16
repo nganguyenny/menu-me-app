@@ -125,3 +125,23 @@ body {
   width: 100%;
   object-fit: cover;
 }
+
+h1#delicious-meals {
+  padding: 5px 0;
+}
+
+body {
+  min-width: 100%;
+  min-height: 100%;
+}
+
+div.appview-container {
+  background-image:url(https://storage.cloud.google.com/menu_me_storage/pizza-photo-header.png);
+  /* background-size:cover; */
+  background-repeat: no-repeat;
+  background-position: right top;
+  background-attachment: fixed;
+  background-size: 70% auto;
+  /* background-size: 80px 80px; */
+  /* padding: 16px 16px; */
+}
