@@ -122,7 +122,7 @@ if uploaded_file is not None:
     print(f'> rgb_im is save at: menu-{date_time}.jpg')
 
     # Upload photo to Google Storage
-    with st.spinner('Menu photo is being transformed... ✨✨'):
+    with st.sidebar.spinner('Menu photo is being transformed... ✨✨'):
         time.sleep(2)
         blob = bucket.blob(f"menu-{date_time}.jpg")
         blob.upload_from_filename(f"menu-{date_time}.jpg")
