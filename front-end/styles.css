@@ -139,12 +139,10 @@ div.block-container {
   padding: 16px 16px;
 }
 
-div.appview-container {
+/* div.appview-container {
   background-image:url(https://storage.cloud.google.com/menu_me_storage/pizza-photo-header.png);
-  /* background-size:cover; */
   background-repeat: no-repeat;
   background-position: right top;
   background-attachment: fixed;
   background-size: 300px auto;
-  /* background-size: 80px 80px; */
-}
+} */
