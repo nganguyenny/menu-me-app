@@ -51,6 +51,12 @@ def save_item_details_html(dish_name, img_url, translated_name, allergy_informat
             recipe_str += f"'<li>'{step}'</li>'"
         recipe_html = f'''<h4>Recipe</h4>
                         <ol>{recipe_str}</ol>'''
+    # Dish item locator
+    if menu_loc_url == None:
+        menu_loc_html = ''
+    else:
+        menu_loc_html = f'''<h4>Location of dish on the menu ⭐️ 👇</h4>
+                    <img class="img-star-menu" src="{menu_loc_url}">'''
     result = f'''<html>
         <head>
             <link rel="stylesheet" href="https://storage.googleapis.com/menu_me_bucket/styles.css">
@@ -69,8 +75,7 @@ def save_item_details_html(dish_name, img_url, translated_name, allergy_informat
                     {allergy_html}
                     {ingredients_html}
                     {recipe_html}
-                    <h4>Location of dish on the menu ⭐️ 👇</h4>
-                    <img class="img-star-menu" src="{menu_loc_url}">
+                    {menu_loc_html}
                     </div>
                 </div>
               </div>
