@@ -108,9 +108,9 @@ legacy_caching.clear_cache()
 with open('front-end/styles.css') as f:
     st.markdown(f'<style>{f.read()}</style>', unsafe_allow_html=True)
 
-st.markdown('''<h1 style="font-size:48px;padding: 20px 0 0 0; padding-top: 20px;">Menu</h1>
-<h1 style="color:#FE714C;font-size:48px;padding:0;">.me<h1>
-<p style="color:gray;font-size:20px;padding:0;">Delicious meals</p>
+st.markdown('''<span style="font-size:48px;color:black;font-weight:bold;padding:0;">Menu</span>
+<span style="color:#FE714C;font-weight:bold;font-size:48px;padding:0;">.me</span>
+<p style="color:gray;font-size:20px;padding:0;">Your menu into pictures</p>
 ''', unsafe_allow_html=True)
 
 target_language = 'en'
