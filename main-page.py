@@ -96,9 +96,9 @@ CREDENTIALS_JSON_GOOGLE_CLOUD = os.getenv('CREDENTIALS_JSON_GOOGLE_CLOUD')
 ##################################
 ####     Google Cloud Run     ####
 ##################################
-import os
+# import os
 
-CREDENTIALS_JSON_GOOGLE_CLOUD = os.environ['CREDENTIALS_JSON_GOOGLE_CLOUD']
+# CREDENTIALS_JSON_GOOGLE_CLOUD = os.environ['CREDENTIALS_JSON_GOOGLE_CLOUD']
 
 st.set_page_config(page_title="Menu.me", page_icon="🍕")
 
