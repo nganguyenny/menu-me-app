@@ -198,7 +198,7 @@ if uploaded_file is not None:
             print(f'----------------Item {count}-------------------')
             print('key: ', key)
             print('value: ', value)
-            item_request_url = f"{base_url}/item?item={key}&language={target_language}"
+            item_request_url = f"{base_url}/item?text={key}&target_language={target_language}"
             print(item_request_url)
             item_details = requests.get(item_request_url).json()
             print('----> item details api response: ', item_details)
